@@ -57,7 +57,7 @@
           p.age = parseInt(calculateAge(dob));
           p.height = getQuantityValueAndUnit(height[0]);
           p.weight = getQuantityValueAndUnit(weight[0]);
-          p.weight = weight.length;
+          // p.weight = weight.length;
 
           if (typeof systolicbp != 'undefined')  {
             p.systolicbp = systolicbp;
