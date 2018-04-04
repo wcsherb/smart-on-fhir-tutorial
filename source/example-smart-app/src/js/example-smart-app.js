@@ -139,8 +139,9 @@
     if (typeof ob != 'undefined' &&
         typeof ob.valueQuantity != 'undefined' &&
         typeof ob.valueQuantity.value != 'undefined' &&
-        typeof ob.valueQuantity.unit != 'undefined') {
-          return ob.valueQuantity.value + ' ' + ob.valueQuantity.unit;
+        typeof ob.valueQuantity.unit != 'undefined') &&
+        typeof ob.valueDateTime != 'undefined' {
+          return ob.valueQuantity.value + ' ' + ob.valueQuantity.unit + ' ' + ob.valueDateTime;
     } else {
       return undefined;
     }
