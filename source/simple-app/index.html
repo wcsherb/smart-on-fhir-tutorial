@@ -37,6 +37,7 @@
 
         var med_list = document.getElementById('med_list');
         var i = 1;
+        var obs_text;
 
         function displayMedication (medCodings) {
             med_list.innerHTML += "<li> " + getMedicationName(medCodings) + "</li>";
@@ -58,9 +59,10 @@
             });
             smart.patient.api.fetchAll({type: "Observation"}).then(function(results) {
                results.forEach(function(observation){
-                 document.getElementById('obs_list').innerHTML += "<tr><td>" + i + "</td><td>" + observation.status + "</td>";
-                 document.getElementById('obs_list').innerHTML += "<td>" + observation.code.coding.display + "</td>";
-                 document.getElementById('obs_list').innerHTML += "</tr>";
+                 obs_text = "<tr><td>" + i + "</td><td>" + observation.status + "</td>";
+                 obs_text += "<td>" + observation.code.coding.display + "</td>";
+                 obs_text += "</tr>";
+                 document.getElementById('obs_list').innerHTML += obs_text;
                  i++;
                });
             });
