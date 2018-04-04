@@ -58,7 +58,7 @@
             });
             smart.patient.api.fetchAll({type: "Observation"}).then(function(results) {
                results.forEach(function(observation){
-                 document.getElementById('obs_list').innerHTML += "<tr><td>" + i + "</td><td>" + observation.status + "</td><td>" + observation.observationCodableConcept.coding.display + "</td><tr>";
+                 document.getElementById('obs_list').innerHTML += "<tr><td>" + i + "</td><td>" + observation.status + "</td><td>" + observation.observationCodeableConcept.coding.display + "</td><tr>";
                  i++;
                });
             });
