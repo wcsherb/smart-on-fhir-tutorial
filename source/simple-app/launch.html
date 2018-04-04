@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../example-smart-app/lib/js/fhir-client-v0.1.12.js"></script>
+    <script>
+      FHIR.oauth2.authorize({
+        "client_id": "my_web_app",
+        "scope":  "patient/*.read"
+      });
+    </script>
+  </head>
+  Loading...
+</html>
