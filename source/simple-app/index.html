@@ -57,7 +57,7 @@
             });
             smart.patient.api.fetchAll({type: "Observation"}).then(function(results) {
                results.forEach(function(observation){
-                 document.getElementById('obs_list').innerHTML += "<li>" + observation.category + "</li>";
+                 document.getElementById('obs_list').innerHTML += "<li>" + observation.category.display + "</li>";
                });
             });
         });
