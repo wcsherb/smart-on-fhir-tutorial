@@ -60,7 +60,7 @@
                results.forEach(function(observation){
                  document.getElementById('obs_list').innerHTML += "<tr><td>" + i + "</td><td>" + observation.status + "</td>";
                //  document.getElementById('obs_list').innerHTML += "<td>" + observation.observationCodeableConcept.coding.display + "</td>";
-                 document.getElementByID('obs_list').innerHTML += "</tr>";
+                 document.getElementById('obs_list').innerHTML += "</tr>";
                  i++;
                });
             });
