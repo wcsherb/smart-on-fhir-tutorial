@@ -5,9 +5,12 @@
     <script src="../example-smart-app/lib/js/fhir-client-v0.1.12.js"></script>
   </head>
   <body>
-    <h1>Medications for <span id="name"></span></h1>
+    <h1><span id="name"></span></h1>
+    <h2>Medications</h2>
     <ol id="med_list"></ol>
-    <h1>Body Weight for <span id="name"></span></h1>
+    <h2>Body Weight</h2>
+    <ol id="obs_list"</ol>
+    
     <script type="text/javascript">
         function getPatientName (pt) {
             if (pt.name) {
@@ -50,6 +53,11 @@
                         var med = refs(prescription, prescription.medicationReference);
                         displayMedication(med && med.code.coding || []);
                     }
+               });
+            });
+            smart.patient.api.fetchAll({type: "Observation"}).then(function(results) {
+               results.forEach(function(observation){
+                 document.getElementById('obs_list').innerHTML += "<li>Observation</li>";
                });
             });
         });
