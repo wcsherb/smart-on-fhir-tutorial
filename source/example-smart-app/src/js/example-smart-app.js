@@ -89,7 +89,7 @@
       birthdate: {value: ''},
       age: {value: ''},
       height: {value: ''},
-      // weight: {value: ''},
+      weight: {value: ''},
       systolicbp: {value: ''},
       diastolicbp: {value: ''},
       ldl: {value: ''},
@@ -155,7 +155,7 @@
     $('#birthdate').html(p.birthdate);
     $('#age').html(p.age);
     $('#height').html(p.height);
-    // $('#weight').html(p.weight);
+    $('#weight').html(p.weight);
     $('#systolicbp').html(p.systolicbp);
     $('#diastolicbp').html(p.diastolicbp);
     $('#ldl').html(p.ldl);
