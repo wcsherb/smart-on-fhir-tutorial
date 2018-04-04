@@ -1,5 +1,7 @@
 # SMART Tutorial
 
+FHIR Sandbox:  http://launch.smarthealthit.org/?auth_error=&fhir_version_1=r2&fhir_version_2=r2&iss=&launch_ehr=1&launch_url=https%3A%2F%2Fwcsherb.github.io%2Fsmart-on-fhir-tutorial%2Fsource%2Fsimple-app%2Flaunch.html&patient=04327b09-4d3a-4c8b-9959-83bc1b358203&prov_skip_auth=1&provider=&pt_skip_auth=1&public_key=&sb=&sde=&sim_ehr=0&token_lifetime=15&user_pt=
+
 Run the tutorial here:
 https://cerner.github.io/smart-on-fhir-tutorial
 
