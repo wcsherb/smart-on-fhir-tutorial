@@ -47,17 +47,16 @@
         }
       
         function displayObsResult (obs) {
-          var obsResult = "Empty";
+          var txtObsResult = "Empty";
+          var numObsResult = 0;
           if (obs.component) {
-            obsResult = "Has Component";
+            txtObsResult = "Has Component";
           } else { 
-            obsResult = obs.valueQuantity.value;
-            obsResult = obsResult * 100;
-            obsResult = round(obsResult);
-            obsResult = obsResult / 100;
-            // obsResult += "</td><td>" + obs.valueQuantity.unit;
+            txtObsResult = obs.valueQuantity.value;
+            numObsResult = txtObsResult.toFixed(2);
+            txtObsResult = numObsResult.toString() + "</td><td>" + obs.valueQuantity.unit;
           }
-          return obsResult                                                                        
+          return txtObsResult                                                                        
         }
 
         function displayObsCategory (obsCategory) {
