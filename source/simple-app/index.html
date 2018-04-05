@@ -32,9 +32,11 @@
         }
       
         function displayObsName (obsCodings) {
-            // var obsName = obsCodings.text;
-            var obsName = obsCodings.coding.display;
-            return obsName
+          var obsName = obsCodings.find(function(o){
+               return o.system != "http:";
+         }); 
+ 
+          return obsName && obsName.display || "What is this?"
         }
 
         function displayPatient (pt) {
