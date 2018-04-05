@@ -74,7 +74,6 @@
             $("span#name").prepend("Patient Name: ");
         }
 
-        var i = 1;
         var obs_text;               
 
         FHIR.oauth2.ready(function(smart){
@@ -93,17 +92,16 @@
             });
             smart.patient.api.fetchAll({type: "Condition"}).then(function(results) {
                results.forEach(function(condition){
-                 txtCondition = "<tr><td>" + i + "</td><td>" + condition.code.text + "</td>";
+                 txtCondition = "<tr><td>" + condition.code.text + "</td>";
                  txtCondition += "<td>" + condition.onsetDateTime.substring(0,10) + "</td>";
                  txtCondition += "<td>" + condition.id + "</td>";
                  txtCondition += "</tr>";
                  document.getElementById('condition_list').innerHTML += txtCondition;
-                 i++;
                });
                function sortTable(){
                 var strTableId = "condition_table";
                 var strQuery = "#" + strTableId + " tbody  tr";
-                var intColNum = 2;
+                var intColNum = 1;
                 var rows = $(strQuery).get();
                 rows.sort(function(a, b) {
                   var A = $(a).children('td').eq(intColNum).text().toUpperCase();
@@ -118,17 +116,15 @@
               }
               sortTable();
             });
-            var j = 1;
             smart.patient.api.fetchAll({type: "Observation"}).then(function(results) {
                results.forEach(function(observation){
-                 obs_text = "<tr><td>" + j + "</td><td>" + displayObsCategory(observation.category.coding) + "</td>";
+                 obs_text = "<tr><td>" + displayObsCategory(observation.category.coding) + "</td>";
                  obs_text += "<td>" + observation.effectiveDateTime.substring(0,10) + "</td>";
                  obs_text += "<td>" + displayObsName(observation.code.coding) + "</td>";
                  obs_text += "<td>" + displayObsResult(observation) + "</td>";
                  obs_text += "<td>" + observation.id + "</td>";
                  obs_text += "</tr>";
                  document.getElementById('obs_list').innerHTML += obs_text;
-                 j++;
                });
             });
         });
