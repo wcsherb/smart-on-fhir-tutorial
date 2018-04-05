@@ -23,7 +23,9 @@
                 return "anonymous";
             }
         }
-
+      
+        var med_list = document.getElementById('med_list');
+      
         function getMedicationName (medCodings) {
             var coding = medCodings.find(function(c){
                 return c.system == "http://www.nlm.nih.gov/research/umls/rxnorm";
@@ -32,27 +34,25 @@
             return coding && coding.display || "Unnamed Medication(TM)"
         }
       
+        function displayMedication (medCodings) {
+            med_list.innerHTML += "<li> " + getMedicationName(medCodings) + "</li>";
+        } 
+      
         function displayObsCodeText (obsCode) {
             return obsCode.text
         }
       
         function unpackObsCoding (obsCode) {
             var objObsCoding = obsCode.coding;
-            var txtObsCode = objObsCoding.code;
-            return txtObsCode
+            return objObsCoding
         }
 
         function displayPatient (pt) {
             document.getElementById('name').innerHTML = getPatientName(pt);
         }
 
-        var med_list = document.getElementById('med_list');
         var i = 1;
-        var obs_text;
-
-        function displayMedication (medCodings) {
-            med_list.innerHTML += "<li> " + getMedicationName(medCodings) + "</li>";
-        }                
+        var obs_text;               
 
         FHIR.oauth2.ready(function(smart){
             smart.patient.read().then(function(pt) {
