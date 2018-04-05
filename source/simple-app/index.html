@@ -73,7 +73,23 @@
             document.getElementById('name').innerHTML = getPatientName(pt);
             $("span#name").prepend("Patient Name: ");
         }
-
+      
+        function sortTable( strTableId, intColNum ){
+                strTableId = "#" + strTableId;
+                var strQuery = strTableId + " tbody  tr";
+                var rows = $(strQuery).get();
+                rows.sort(function(a, b) {
+                  var A = $(a).children('td').eq(intColNum).text().toUpperCase();
+                  var B = $(b).children('td').eq(intColNum).text().toUpperCase();
+                  if(A < B) { return -1; }
+                  if(A > B) { return 1;  }
+                  return 0;
+                });
+                $.each(rows, function(index, row) {
+                  $(strTableId).children('tbody').append(row);
+                });
+        }
+      
         var obs_text;               
 
         FHIR.oauth2.ready(function(smart){
@@ -98,23 +114,7 @@
                  txtCondition += "</tr>";
                  document.getElementById('condition_list').innerHTML += txtCondition;
                });
-               function sortTable(){
-                var strTableId = "condition_table";
-                var strQuery = "#" + strTableId + " tbody  tr";
-                var intColNum = 1;
-                var rows = $(strQuery).get();
-                rows.sort(function(a, b) {
-                  var A = $(a).children('td').eq(intColNum).text().toUpperCase();
-                  var B = $(b).children('td').eq(intColNum).text().toUpperCase();
-                  if(A < B) { return -1; }
-                  if(A > B) { return 1;  }
-                  return 0;
-                });
-                $.each(rows, function(index, row) {
-                  $('#condition_table').children('tbody').append(row);
-                });
-              }
-              sortTable();
+              sortTable("condition_table", 1);
             });
             smart.patient.api.fetchAll({type: "Observation"}).then(function(results) {
                results.forEach(function(observation){
