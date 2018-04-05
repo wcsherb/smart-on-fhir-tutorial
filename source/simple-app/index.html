@@ -48,7 +48,7 @@
       
         function displayObsResult (obs) {
           var obsResult = "Empty";
-          if (obs.component) { obsResult = "Has Component"; } else { obsResult = "No Component"; }
+          if (obs.component) { obsResult = "Has Component"; } else { obsResult = obs.valueQuantity.value; }
           return obsResult                                                                        
         }
 
