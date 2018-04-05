@@ -92,7 +92,7 @@
                results.forEach(function(observation){
                  obs_text = "<tr><td>" + i + "</td><td>" + displayObsCategory(observation.category.coding) + "</td>";
                  obs_text += "<td>" + displayObsName(observation.code.coding) + "</td>";
-                 obs_text += "<td>" + observation.effectiveDateTime + "</td>";
+                 obs_text += "<td>" + observation.effectiveDateTime.substring(1,10) + "</td>";
                  obs_text += "<td>" + displayObsResult(observation) + "</td>";
                  obs_text += "<td>" + observation.id + "</td>";
                  obs_text += "</tr>";
