@@ -101,10 +101,13 @@
                  i++;
                });
                function sortTable(){
-                var rows = $('#condition_table tbody  tr').get();
+                var strTableId = "condition_table";
+                var strQuery = "#" + strTableId + " tbody  tr";
+                var intColNum = 2;
+                var rows = $(strQuery).get();
                 rows.sort(function(a, b) {
-                  var A = $(a).children('td').eq(2).text().toUpperCase();
-                  var B = $(b).children('td').eq(2).text().toUpperCase();
+                  var A = $(a).children('td').eq(intColNum).text().toUpperCase();
+                  var B = $(b).children('td').eq(intColNum).text().toUpperCase();
                   if(A < B) { return -1; }
                   if(A > B) { return 1;  }
                   return 0;
