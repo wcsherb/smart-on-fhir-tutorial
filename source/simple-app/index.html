@@ -3,7 +3,7 @@
   <head>
     <title>Cory&#39;s Simple HL7 App</title>
     <script src="../example-smart-app/lib/js/fhir-client-v0.1.12.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
   </head>
   <body>
     <h1><span id="name"></span></h1>
@@ -32,8 +32,14 @@
             return coding && coding.display || "Unnamed Medication(TM)"
         }
       
-        function displayObsName (obsCodings) {
-            return obsCodings.text
+        function displayObsCodeText (obsCode) {
+            return obsCode.text
+        }
+      
+        function unpackObsCoding (obsCode) {
+            var objObsCoding = obsCode.coding;
+            var txtObsCode = objObsCoding.code;
+            return txtObsCode
         }
 
         function displayPatient (pt) {
@@ -65,9 +71,9 @@
             smart.patient.api.fetchAll({type: "Observation"}).then(function(results) {
                results.forEach(function(observation){
                  // if (i == 1) { obs_text = "<tr><th></th><th>Observation Name</th><th>Value</th></tr>"; }
-                 obs_text = "<tr><td>" + i + "</td><td>" + displayObsName(observation.code) + "</td>";
+                 obs_text = "<tr><td>" + i + "</td><td>" + displayObsCodeText(observation.code) + "</td>";
                  obs_text += "<td>" + observation.id + "</td>";
-                 obs_text += "<td>" + $(this).find("id:first").attr("value") + "</td>";
+                 obs_text += "<td>" + unpackObsCoding(observation.code) + "</td>";
                  obs_text += "</tr>";
                  document.getElementById('obs_list').innerHTML += obs_text;
                  i++;
