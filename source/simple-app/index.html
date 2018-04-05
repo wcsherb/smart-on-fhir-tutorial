@@ -32,7 +32,12 @@
         }
       
         function displayObsName (obsCoding) {
-            return obsCoding.system;
+            var coding = obsCoding.find(function(c){
+                return c.system == "http://www.nlm.nih.gov/research/umls/rxnorm";
+            });
+
+            return coding && coding.display || "Unnamed Medication(TM)"
+        }
         }
 
         function displayPatient (pt) {
