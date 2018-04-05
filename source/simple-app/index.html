@@ -78,6 +78,7 @@
                 strTableId = "#" + strTableId;
                 var strQuery = strTableId + " tbody  tr";
                 var rows = $(strQuery).get();
+                var strRowCount;
                 rows.sort(function(a, b) {
                   var A = $(a).children('td').eq(intColNum).text().toUpperCase();
                   var B = $(b).children('td').eq(intColNum).text().toUpperCase();
@@ -88,8 +89,11 @@
                 $.each(rows, function(index, row) {
                   $(strTableId).children('tbody').append(row);
                 });
+                // Append row numbers after the table sort
                 $(strTableId).find('tr').each(function(){
-                  $(this).find('td').eq(0).before('<td>cell 1a</td>');
+                    strRowCount = $(this).index();
+                    strRowCount = "<td>" + strRowCount + "</td>";
+                    $(this).find('td').eq(0).before(strRowCount);
                 });
         }
       
