@@ -48,7 +48,12 @@
       
         function displayObsResult (obs) {
           var obsResult = "Empty";
-          if (obs.component) { obsResult = "Has Component"; } else { obsResult = obs.valueQuantity.value; }
+          if (obs.component) {
+            obsResult = "Has Component";
+          } else { 
+            obsResult = (round(obs.valueQuantity.value)*100)/100;
+            obsResult += "</td><td>" + obs.valueQuantity.unit;
+          }
           return obsResult                                                                        
         }
 
