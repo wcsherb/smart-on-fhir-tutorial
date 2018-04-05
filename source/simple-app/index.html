@@ -50,11 +50,7 @@
           var txtObsResult = "Empty";
           var numObsResult = 0;
           if (obs.component) {
-            var obsComponent = obs.component;
-            var obsCompValue = obsComponent.find(function(y){
-              return y.system == "http://unitsofmeasure.org/";
-            });
-            txtObsResult = obsCompValue.unit;
+            txtObsResult = "Has Component</td><td>";
           } else { 
             txtObsResult = obs.valueQuantity.value;
             numObsResult = txtObsResult.toFixed(2);
