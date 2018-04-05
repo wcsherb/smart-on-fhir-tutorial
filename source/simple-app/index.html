@@ -93,6 +93,7 @@
             smart.patient.api.fetchAll({type: "Condition"}).then(function(results) {
                results.forEach(function(condition){
                  txtCondition = "<tr><td>" + i + "</td><td>" + condition.code.text + "</td>";
+                 txtCondition += "<td>" + condition.onsetDateTime.substring(0,10) + "</td>";
                  txtCondition += "<td>" + condition.id + "</td>";
                  txtCondition += "</tr>";
                  document.getElementById('condition_list').innerHTML += txtCondition;
