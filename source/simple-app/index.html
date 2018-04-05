@@ -38,12 +38,12 @@
             med_list.innerHTML += "<li> " + getMedicationName(medCodings) + "</li>";
         } 
       
-        function displayObsCodeText (obsCode) {
-            return obsCode.text
-        }
-      
         function displayObsName (obsCoding) {
-            return obsCoding
+            var obsCode = obsCoding.find(function(x){
+              return x.system == "http://loinc.org";
+            });
+          
+            return obsCode && obsCode.display || "Not Found"
         }
 
         function displayPatient (pt) {
