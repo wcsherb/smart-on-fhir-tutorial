@@ -4,6 +4,7 @@
     <title>Cory&#39;s Simple HL7 App</title>
     <script src="../example-smart-app/lib/js/fhir-client-v0.1.12.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json2/20160511/json2.min.js"></script>
   </head>
   <body>
     <h1><span id="name"></span></h1>
@@ -52,7 +53,7 @@
           var txtObsResult = "Empty";
           var numObsResult = 0;
           if (obs.component) {
-            txtObsResult = String(obs.component);
+            txtObsResult = JSON.stringify(obs.component);
           } else { 
             txtObsResult = obs.valueQuantity.value;
             numObsResult = txtObsResult.toFixed(2);
