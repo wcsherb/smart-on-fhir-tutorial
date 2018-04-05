@@ -52,6 +52,9 @@
             obsResult = "Has Component";
           } else { 
             obsResult = obs.valueQuantity.value;
+            obsResult = obsResult * 100;
+            obsResult = round(obsResult);
+            obsResult = obsResult / 100;
             // obsResult += "</td><td>" + obs.valueQuantity.unit;
           }
           return obsResult                                                                        
