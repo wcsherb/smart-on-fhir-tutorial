@@ -50,7 +50,7 @@
           var txtObsResult = "Empty";
           var numObsResult = 0;
           if (obs.component) {
-            txtObsResult = "Has Component";
+            txtObsResult = obs.component.valueQuantity.unit;
           } else { 
             txtObsResult = obs.valueQuantity.value;
             numObsResult = txtObsResult.toFixed(2);
