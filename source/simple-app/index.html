@@ -12,7 +12,7 @@
     <h2>Medications</h2>
     <ol id="med_list"></ol>
     <h2>Observations</h2>
-    <table id="obs_list"></table>
+    <table id="obs_table" name="obs_table"><tbody id="obs_list" name="obs_list"></tbody></table>
     
     <script type="text/javascript">
         function getPatientName (pt) {
@@ -126,6 +126,7 @@
                  obs_text += "</tr>";
                  document.getElementById('obs_list').innerHTML += obs_text;
                });
+               sortTable("obs_table", 1);
             });
         });
       
