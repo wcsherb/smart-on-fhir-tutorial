@@ -67,7 +67,7 @@
                  // if (i == 1) { obs_text = "<tr><th></th><th>Observation Name</th><th>Value</th></tr>"; }
                  obs_text = "<tr><td>" + i + "</td><td>" + displayObsName(observation.code) + "</td>";
                  obs_text += "<td>" + observation.id + "</td>";
-                 obs_text += "<td>" + $(this).find("category:first code") + "</td>";
+                 obs_text += "<td>" + $(this).find("category:first code").text() + "</td>";
                  obs_text += "</tr>";
                  document.getElementById('obs_list').innerHTML += obs_text;
                  i++;
