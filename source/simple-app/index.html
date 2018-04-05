@@ -34,6 +34,10 @@
         function displayObsName (obsCodings) {
             return obsCodings.text
         }
+      
+        function displayCatName (obsCategory) {
+             return obsCategory.text
+        }
 
         function displayPatient (pt) {
             document.getElementById('name').innerHTML = getPatientName(pt);
@@ -64,6 +68,7 @@
             smart.patient.api.fetchAll({type: "Observation"}).then(function(results) {
                results.forEach(function(observation){
                  obs_text = "<tr><td>" + i + "</td><td>" + displayObsName(observation.code) + "</td>";
+                 obs_text += "<td>" + displayCatName(observation.category) + "</td>";
                  obs_text += "</tr>";
                  document.getElementById('obs_list').innerHTML += obs_text;
                  i++;
