@@ -32,7 +32,8 @@
         }
       
         function displayObsName (obsCodings) {
-            var obsName = obsCodings.text;
+            // var obsName = obsCodings.text;
+            var obsName = obsCodings.coding.display;
             return obsName
         }
 
