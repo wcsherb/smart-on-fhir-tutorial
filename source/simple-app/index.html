@@ -45,6 +45,12 @@
           
             return obsCode.code + '</td><td>' + obsCode.display;
         }
+      
+        function displayObsResult (obs) {
+          var obsResult;
+          if (obs.component.valueQuantity) { obsResult = "Has Component"; } else { obsResult = "No Component; }
+          return obsResult                                                                        
+        }
 
         function displayObsCategory (obsCategory) {
             var obsCatCode = obsCategory.find(function(z){
@@ -80,6 +86,7 @@
                  obs_text = "<tr><td>" + i + "</td><td>" + displayObsCategory(observation.category.coding) + "</td>";
                  obs_text += "<td>" + displayObsName(observation.code.coding) + "</td>";
                  obs_text += "<td>" + observation.id + "</td>";
+                 obs_text += "<td>" + displayObsResult(observation) + "</td>";
                  obs_text += "</tr>";
                  document.getElementById('obs_list').innerHTML += obs_text;
                  i++;
