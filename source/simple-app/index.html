@@ -88,6 +88,9 @@
                 $.each(rows, function(index, row) {
                   $(strTableId).children('tbody').append(row);
                 });
+                $(strTableId).find('tr').each(function(){
+                  $(this).find('td').eq(0).before('<td>cell 1a</td>');
+                });
         }
       
         var obs_text;               
