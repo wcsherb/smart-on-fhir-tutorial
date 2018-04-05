@@ -31,12 +31,12 @@
             return coding && coding.display || "Unnamed Medication(TM)"
         }
       
-        function displayObsName (obsCoding) {
-            var coding = obsCoding.find(function(c){
+        function displayObsName (obsCodings) {
+            var obsCoding = obsCodings.find(function(c){
                 return c.system == "http://www.nlm.nih.gov/research/umls/rxnorm";
             });
 
-            return coding && coding.display || "Unnamed Medication(TM)"
+            return obsCoding && ObsCoding.display || "Unnamed Medication(TM)"
         }
         }
 
