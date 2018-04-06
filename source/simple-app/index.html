@@ -80,7 +80,8 @@
         function addAge( strTableId, intColNum ){
             strTableId = "#" + strTableId;
             var strDOB = $("span#dob").text();
-            return strDOB
+            var strDate = $(strTableId + "_date").text();
+            return strDate
         }
       
         var obs_text;               
@@ -91,9 +92,9 @@
             });
             smart.patient.api.fetchAll({type: "MedicationOrder"}).then(function(results) {
                results.forEach(function(medOrder){
-                 var txtMedOrder = "<tr><td>" + medOrder.dateWritten + "</td>";
+                 var txtMedOrder = "<tr><td id='med_table_date'>" + medOrder.dateWritten + "</td>";
                  txtMedOrder += "<td>" + medOrder.medicationCodeableConcept.text + "</td>";
-                 txtMedOrder += "<td>" + medOrder.id + "</td>";
+                 // txtMedOrder += "<td>" + medOrder.id + "</td>";
                  txtMedOrder += "<td>" + addAge("med_table", 1) + "</td>";
                  txtMedOrder += "</tr>";
                  document.getElementById('med_list').innerHTML += txtMedOrder;
@@ -102,7 +103,7 @@
             });
             smart.patient.api.fetchAll({type: "Condition"}).then(function(results) {
                results.forEach(function(condition){
-                 var txtCondition = "<tr><td>" + condition.onsetDateTime.substring(0,10) + "</td>";
+                 var txtCondition = "<tr><td id='condition_table_date'>" + condition.onsetDateTime.substring(0,10) + "</td>";
                  txtCondition += "<td>" + condition.code.text + "</td>";
                 // txtCondition += "<td>" + condition.id + "</td>";
                  txtCondition += "</tr>";
@@ -112,7 +113,7 @@
             });
           smart.patient.api.fetchAll({type: "Encounter"}).then(function(results) {
                results.forEach(function(encounter){
-                 var txtEncounter = "<tr><td>" + encounter.period.start.substring(0,10) + "</td>";
+                 var txtEncounter = "<tr><td id='enc_table_date'>" + encounter.period.start.substring(0,10) + "</td>";
                  txtEncounter += "<td>" + encounter.type[0].text + "</td>";
                  txtEncounter += "</tr>";
                  document.getElementById('enc_list').innerHTML += txtEncounter;
@@ -121,7 +122,7 @@
             });
             smart.patient.api.fetchAll({type: "Observation"}).then(function(results) {
                results.forEach(function(observation){
-                 var obs_text = "<tr><td>" + observation.effectiveDateTime.substring(0,10) + "</td>";
+                 var obs_text = "<tr><td id='obs_table_date'>" + observation.effectiveDateTime.substring(0,10) + "</td>";
                  obs_text += "<td>" + observation.category.coding[0].code + "</td>";
                  obs_text += "<td>" + observation.code.coding[0].display + "</td>";
                  obs_text += "<td>" + displayObsResult(observation) + "</td>";
