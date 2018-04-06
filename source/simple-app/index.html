@@ -54,6 +54,16 @@
            // $("span#name").prepend("Patient Name: ");
         }
       
+      var _MS_PER_DAY = 1000 * 60 * 60 * 24;
+
+      // a and b are javascript Date objects
+      function dateDiffInDays(a, b) {
+        // Discard the time and time-zone information.
+        var utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+        var utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+        return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+      }
+      
         function sortTable( strTableId, intColNum ){
                 var strTableName = strTableId;
                 strTableId = "#" + strTableId;
@@ -82,8 +92,8 @@
                     strDOB = $("span#dob").text();
                     var dtDOB = new Date(strDOB);
                     var dtDate = new Date(strDate);
-                    var intYears = Math.floor((dtDate - dtDOB)/(1000*60*60*24*365));
-                    var strYears = "<td>" + intYears + "</td>";
+                    var intDays = dateDiffInDays(strDOB,strDate);
+                    var strYears = "<td>" + Math.floor(intDays/365) + "</td>";
                     $(this).children('td').last().after(strYears);
                 });
         }
