@@ -80,7 +80,7 @@
             });
             smart.patient.api.fetchAll({type: "MedicationOrder"}).then(function(results) {
                results.forEach(function(medOrder){
-                 txtMedOrder = "<tr><td>" + JSON.stringify(medOrder) + "</td>";
+                 txtMedOrder = "<tr><td>" + medOrder.id + "</td>";
                  // txtMedOrder += "<td>" + condition.onsetDateTime.substring(0,10) + "</td>";
                  txtMedOrder += "</tr>";
                  document.getElementById('med_list').innerHTML += txtMedOrder;
