@@ -10,8 +10,8 @@
     <h1><span id="name"></span></h1>
     <h2>Conditions</h2>
     <table id="condition_table" name="condition_table"><tbody id="condition_list" name="condition_list"></tbody></table>
-    <h2>Medications</h2>
-    <ol id="med_list"></ol>
+    <h2>Medication Orders</h2>
+    <table id="med_table" name="med_table"><tbody id="med_list" name="med_list"></tbody></table>
     <h2>Encounters</h2>
     <table id="enc_table" name="enc_table"><tbody id="enc_list" name="enc_list"></tbody></table>
     <h2>Observations</h2>
@@ -27,17 +27,6 @@
             } else {
                 return "anonymous";
             }
-        }
-      
-        var med_list = document.getElementById('med_list');
-      
-        function getMedicationName (medCodings) {
-            var coding = medCodings[0].display;
-            return coding
-        }
-      
-        function displayMedication (medCodings) {
-            med_list.innerHTML += "<li> " + getMedicationName(medCodings) + "</li>";
         }
       
         function displayObsResult (obs) {
@@ -89,15 +78,14 @@
             smart.patient.read().then(function(pt) {
                 displayPatient (pt);
             });
-            smart.patient.api.fetchAllWithReferences({type: "MedicationOrder"},["MedicationOrder.medicationReference"]).then(function(results, refs) {
-               results.forEach(function(prescription){
-                    if (prescription.medicationCodeableConcept) {
-                        displayMedication(prescription.medicationCodeableConcept.coding);
-                    } else if (prescription.medicationReference) {
-                        var med = refs(prescription, prescription.medicationReference);
-                        displayMedication(med && med.code.coding || []);
-                    }
+            smart.patient.api.fetchAll({type: "MedicationOrder"}).then(function(results) {
+               results.forEach(function(medOrder){
+                 txtMedOrder = "<tr><td>" + JSON.stringify(medOrder) + "</td>";
+                 // txtMedOrder += "<td>" + condition.onsetDateTime.substring(0,10) + "</td>";
+                 txtMedOrder += "</tr>";
+                 document.getElementById('med_list').innerHTML += txtMedOrder;
                });
+              sortTable("med_table", 0);
             });
             smart.patient.api.fetchAll({type: "Condition"}).then(function(results) {
                results.forEach(function(condition){
