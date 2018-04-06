@@ -82,7 +82,7 @@
                     strDOB = $("span#dob").text();
                     var dtDOB = new Date(strDOB);
                     var dtDate = new Date(strDate);
-                    // var intDays = (dtDate-dtDOB);
+                    var intDays = dtDate - dtDOB;
                     // var strYears = "<td>" + intDays + "</td>";
                     $(this).children('td').last().after("Blah");
                 });
