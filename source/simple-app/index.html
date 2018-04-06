@@ -122,7 +122,7 @@
                results.forEach(function(condition){
                  txtCondition = "<tr><td>" + condition.code.text + "</td>";
                  txtCondition += "<td>" + condition.onsetDateTime.substring(0,10) + "</td>";
-                 txtCondition += "<td>" + condition.id + "</td>";
+                // txtCondition += "<td>" + condition.id + "</td>";
                  txtCondition += "</tr>";
                  document.getElementById('condition_list').innerHTML += txtCondition;
                });
@@ -131,7 +131,7 @@
           smart.patient.api.fetchAll({type: "Encounter"}).then(function(results) {
                results.forEach(function(encounter){
                  txtEncounter = "<tr><td>" + encounter.period.start.substring(0,10) + "</td>";
-                 txtEncounter += "<td>" + JSON.stringify(encounter.type) + "</td>";
+                 txtEncounter += "<td>" + JSON.stringify(encounter.type[1]) + "</td>";
                  txtEncounter += "</tr>";
                  document.getElementById('enc_list').innerHTML += txtEncounter;
                });
@@ -143,7 +143,7 @@
                  obs_text += "<td>" + observation.effectiveDateTime.substring(0,10) + "</td>";
                  obs_text += "<td>" + displayObsName(observation.code.coding) + "</td>";
                  obs_text += "<td>" + displayObsResult(observation) + "</td>";
-                 obs_text += "<td>" + observation.id + "</td>";
+               //  obs_text += "<td>" + observation.id + "</td>";
                  obs_text += "</tr>";
                  document.getElementById('obs_list').innerHTML += obs_text;
                });
