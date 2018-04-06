@@ -32,7 +32,7 @@
         var med_list = document.getElementById('med_list');
       
         function getMedicationName (medCodings) {
-            var coding = JSON.stringify(medCodings);
+            var coding = medCodings[0].display;
             return coding
         }
       
