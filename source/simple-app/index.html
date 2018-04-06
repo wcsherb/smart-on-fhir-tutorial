@@ -23,7 +23,7 @@
                 var names = pt.name.map(function(name) {
                     return name.given.join(" ") + " " + name.family.join(" ");
                 });
-                return names.join(" / ") + pt.birthDate;
+                return names.join(" / ") + " " + pt.birthDate;
             } else {
                 return "anonymous";
             }
@@ -57,7 +57,7 @@
  
         function displayPatient (pt) {
             document.getElementById('name').innerHTML = getPatientName(pt);
-            $("span#name").prepend("Patient Name: ");
+           // $("span#name").prepend("Patient Name: ");
         }
       
         function sortTable( strTableId, intColNum ){
