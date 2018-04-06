@@ -61,6 +61,7 @@
                 var rows = $(strQuery).get();
                 var strRowCount;
                 var strDOB;
+                var strDate;
                 rows.sort(function(a, b) {
                   var A = $(a).children('td').eq(intColNum).text().toUpperCase();
                   var B = $(b).children('td').eq(intColNum).text().toUpperCase();
@@ -77,7 +78,7 @@
                     strRowCount = "<td>" + strRowCount + "</td>";
                     $(this).find('td').eq(0).before(strRowCount);
                 // Add the age of the patient on each row
-                    $(this).children('td').eq(1).attr('style', 'color: red');
+                    strDate = $(this).children('td').eq(1).text();
                     strDOB = $("span#dob").text();
                     strDOB = "<td>" + strDOB + "</td>"
                     $(this).children('td').last().after(strDOB);
