@@ -77,6 +77,12 @@
                 });
         }
       
+        function addAge( strTableId, intColNum ){
+            strTableId = "#" + strTableId;
+            var strDOB = $("span#dob").text();
+            return strDOB
+        }
+      
         var obs_text;               
 
         FHIR.oauth2.ready(function(smart){
@@ -85,9 +91,10 @@
             });
             smart.patient.api.fetchAll({type: "MedicationOrder"}).then(function(results) {
                results.forEach(function(medOrder){
-                 txtMedOrder = "<tr><td>" + medOrder.dateWritten + "</td>";
+                 var txtMedOrder = "<tr><td>" + medOrder.dateWritten + "</td>";
                  txtMedOrder += "<td>" + medOrder.medicationCodeableConcept.text + "</td>";
                  txtMedOrder += "<td>" + medOrder.id + "</td>";
+                 txtMedOrder += "<td>" + addAge("med_table", 1) + "</td>";
                  txtMedOrder += "</tr>";
                  document.getElementById('med_list').innerHTML += txtMedOrder;
                });
@@ -95,7 +102,7 @@
             });
             smart.patient.api.fetchAll({type: "Condition"}).then(function(results) {
                results.forEach(function(condition){
-                 txtCondition = "<tr><td>" + condition.onsetDateTime.substring(0,10) + "</td>";
+                 var txtCondition = "<tr><td>" + condition.onsetDateTime.substring(0,10) + "</td>";
                  txtCondition += "<td>" + condition.code.text + "</td>";
                 // txtCondition += "<td>" + condition.id + "</td>";
                  txtCondition += "</tr>";
@@ -105,7 +112,7 @@
             });
           smart.patient.api.fetchAll({type: "Encounter"}).then(function(results) {
                results.forEach(function(encounter){
-                 txtEncounter = "<tr><td>" + encounter.period.start.substring(0,10) + "</td>";
+                 var txtEncounter = "<tr><td>" + encounter.period.start.substring(0,10) + "</td>";
                  txtEncounter += "<td>" + encounter.type[0].text + "</td>";
                  txtEncounter += "</tr>";
                  document.getElementById('enc_list').innerHTML += txtEncounter;
@@ -114,7 +121,7 @@
             });
             smart.patient.api.fetchAll({type: "Observation"}).then(function(results) {
                results.forEach(function(observation){
-                 obs_text = "<tr><td>" + observation.effectiveDateTime.substring(0,10) + "</td>";
+                 var obs_text = "<tr><td>" + observation.effectiveDateTime.substring(0,10) + "</td>";
                  obs_text += "<td>" + observation.category.coding[0].code + "</td>";
                  obs_text += "<td>" + observation.code.coding[0].display + "</td>";
                  obs_text += "<td>" + displayObsResult(observation) + "</td>";
