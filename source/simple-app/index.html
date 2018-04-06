@@ -134,7 +134,7 @@
                  txtEncounter += "</tr>";
                  document.getElementById('enc_list').innerHTML += txtEncounter;
                });
-              sortTable("condition_table", 1);
+              sortTable("enc_table", 0);
             });
             smart.patient.api.fetchAll({type: "Observation"}).then(function(results) {
                results.forEach(function(observation){
