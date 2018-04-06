@@ -53,7 +53,7 @@
           var txtObsResult = "Empty";
           var numObsResult = 0;
           if (obs.component) {
-            txtObsResult = JSON.stringify(obs.component);
+            txtObsResult = JSON.stringify(obs.component[0]);
           } else { 
             txtObsResult = obs.valueQuantity.value;
             numObsResult = txtObsResult.toFixed(2);
