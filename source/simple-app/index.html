@@ -130,7 +130,7 @@
             });
           smart.patient.api.fetchAll({type: "Encounter"}).then(function(results) {
                results.forEach(function(encounter){
-                 txtEncounter = "<tr><td>" + JSON.stringify(encounter.type) + "</td>";
+                 txtEncounter = "<tr><td>" + encounter.type.text + "</td>";
                  txtEncounter += "</tr>";
                  document.getElementById('enc_list').innerHTML += txtEncounter;
                });
