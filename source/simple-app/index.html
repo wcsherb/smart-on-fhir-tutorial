@@ -80,7 +80,8 @@
                 // Add the age of the patient on each row
                     strDate = $(this).children('td').eq(1).text();
                     strDOB = $("span#dob").text();
-                    strDOB = "<td>" + strDOB + "</td>"
+                    strDOB = strDOB.substring(0,4) + "-" strDOB.substring(4,2) + "-" + strDOB.substring(6,2);
+                    strDOB = "<td>" + strDOB + "</td>";
                     $(this).children('td').last().after(strDOB);
                 });
         }
