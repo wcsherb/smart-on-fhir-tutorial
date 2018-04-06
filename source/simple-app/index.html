@@ -120,9 +120,9 @@
             });
             smart.patient.api.fetchAll({type: "Observation"}).then(function(results) {
                results.forEach(function(observation){
-                 obs_text = "<tr><td>" + JSON.stringify(observation.category.coding) + "</td>";
+                 obs_text = "<tr><td>" + observation.category.coding[0].code + "</td>";
                  obs_text += "<td>" + observation.effectiveDateTime.substring(0,10) + "</td>";
-                 obs_text += "<td>" + JSON.stringify(observation.code.coding) + "</td>";
+                 obs_text += "<td>" + observation.code.coding[0].display + "</td>";
                  obs_text += "<td>" + displayObsResult(observation) + "</td>";
                //  obs_text += "<td>" + observation.id + "</td>";
                  obs_text += "</tr>";
