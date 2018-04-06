@@ -84,7 +84,7 @@
                     var dtDate = new Date(strDate);
                     var intMS = dtDate - dtDOB;
                     var intYears = intMS / ( 1000*60*60*24*365 );
-                    // var strYears = "<td>" + intDays + "</td>";
+                    var strYears = "<td>" + intYears.toString() + "</td>";
                     $(this).children('td').last().after("Blah");
                 });
         }
