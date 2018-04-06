@@ -55,6 +55,7 @@
         }
       
         function sortTable( strTableId, intColNum ){
+                var strTableName = strTableId;
                 strTableId = "#" + strTableId;
                 var strQuery = strTableId + " tbody  tr";
                 var rows = $(strQuery).get();
@@ -74,6 +75,9 @@
                     strRowCount = $(this).index() + 1;
                     strRowCount = "<td>" + strRowCount + "</td>";
                     $(this).find('td').eq(0).before(strRowCount);
+                    var strTdId = strTableName + "_date_" + strRowCount;
+                    $(this).children('td').eq(1).attr('id',strTdId);
+                    $("td#" + strTdId).css({"color": "red"});
                 });
         }
       
