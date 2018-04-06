@@ -32,11 +32,8 @@
         var med_list = document.getElementById('med_list');
       
         function getMedicationName (medCodings) {
-            var coding = medCodings.find(function(c){
-                return c.system == "http://www.nlm.nih.gov/research/umls/rxnorm";
-            });
-
-            return coding && coding.display || "Unnamed Medication(TM)"
+            var coding = JSON.stringify(medCodings);
+            return coding
         }
       
         function displayMedication (medCodings) {
