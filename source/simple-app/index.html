@@ -60,6 +60,7 @@
                 var strQuery = strTableId + " tbody  tr";
                 var rows = $(strQuery).get();
                 var strRowCount;
+                var strDOB;
                 rows.sort(function(a, b) {
                   var A = $(a).children('td').eq(intColNum).text().toUpperCase();
                   var B = $(b).children('td').eq(intColNum).text().toUpperCase();
@@ -75,17 +76,12 @@
                     strRowCount = $(this).index() + 1;
                     strRowCount = "<td>" + strRowCount + "</td>";
                     $(this).find('td').eq(0).before(strRowCount);
-                    var strTdId = strTableName + "_date_" + strRowCount;
+                // Add the age of the patient on each row
                     $(this).children('td').eq(1).attr('style', 'color: red');
-                    // $("td#" + strTdId).attr('style', 'color: red');
+                    strDOB = $("span#dob").text();
+                    strDOB = "<td>" + strDOB + "</td>"
+                    $(this).children('td').last().after(strDOB);
                 });
-        }
-      
-        function addAge( strTableId, intColNum ){
-            strTableId = "#" + strTableId;
-            var strDOB = $("span#dob").text();
-            // var strDate = $(strTableId + "_date").text();
-            return strDOB
         }
       
         var obs_text;               
@@ -99,7 +95,6 @@
                  var txtMedOrder = "<tr><td>" + medOrder.dateWritten + "</td>";
                  txtMedOrder += "<td>" + medOrder.medicationCodeableConcept.text + "</td>";
                  // txtMedOrder += "<td>" + medOrder.id + "</td>";
-                 txtMedOrder += "<td>" + addAge("med_table", 1) + "</td>";
                  txtMedOrder += "</tr>";
                  document.getElementById('med_list').innerHTML += txtMedOrder;
                });
