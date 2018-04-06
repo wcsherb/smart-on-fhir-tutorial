@@ -82,9 +82,10 @@
                     strDOB = $("span#dob").text();
                     var dtDOB = new Date(strDOB);
                     var dtDate = new Date(strDate);
-                    var intMS = dtDate.getTime();
-                    var intYears = intMS / ( 1000*60*60*24*365 );
-                    var strYears = "<td>" + intMS.toString() + "</td>";
+                    var intDate = dtDate.getTime();
+                    var intDOB = dtDOB.getTime();
+                    // var intYears = intMS / ( 1000*60*60*24*365 );
+                    var strYears = "<td>" + intDate.toString() + " " + intDOB.toString() + "</td>";
                     $(this).children('td').last().after(strYears);
                 });
         }
