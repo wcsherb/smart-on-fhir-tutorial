@@ -7,7 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/json2/20160511/json2.min.js"></script>
   </head>
   <body>
-    <h1><span id="name"></span></h1>
+    <h1><span id="name"></span><span id="dob"></span></h1>
     <h2>Conditions</h2>
     <table id="condition_table" name="condition_table"><tbody id="condition_list" name="condition_list"></tbody></table>
     <h2>Medication Orders</h2>
@@ -23,10 +23,14 @@
                 var names = pt.name.map(function(name) {
                     return name.given.join(" ") + " " + name.family.join(" ");
                 });
-                return names.join(" / ") + " " + pt.birthDate;
+                return names.join(" / ");
             } else {
                 return "anonymous";
             }
+        }
+      
+        function getPatientDOB (pt) {
+                return " " + pt.birthDate;
         }
       
         function displayObsResult (obs) {
@@ -46,6 +50,7 @@
  
         function displayPatient (pt) {
             document.getElementById('name').innerHTML = getPatientName(pt);
+            document.getElementById('dob').innerHTML = getPatientDOB(pt);
            // $("span#name").prepend("Patient Name: ");
         }
       
@@ -83,7 +88,6 @@
                  txtMedOrder = "<tr><td>" + medOrder.dateWritten + "</td>";
                  txtMedOrder += "<td>" + medOrder.medicationCodeableConcept.text + "</td>";
                  txtMedOrder += "<td>" + medOrder.id + "</td>";
-                 // txtMedOrder += "<td>" + condition.onsetDateTime.substring(0,10) + "</td>";
                  txtMedOrder += "</tr>";
                  document.getElementById('med_list').innerHTML += txtMedOrder;
                });
@@ -91,13 +95,13 @@
             });
             smart.patient.api.fetchAll({type: "Condition"}).then(function(results) {
                results.forEach(function(condition){
-                 txtCondition = "<tr><td>" + condition.code.text + "</td>";
-                 txtCondition += "<td>" + condition.onsetDateTime.substring(0,10) + "</td>";
+                 txtCondition = "<tr><td>" + condition.onsetDateTime.substring(0,10) + "</td>";
+                 txtCondition += "<td>" + condition.code.text + "</td>";
                 // txtCondition += "<td>" + condition.id + "</td>";
                  txtCondition += "</tr>";
                  document.getElementById('condition_list').innerHTML += txtCondition;
                });
-              sortTable("condition_table", 1);
+              sortTable("condition_table", 0);
             });
           smart.patient.api.fetchAll({type: "Encounter"}).then(function(results) {
                results.forEach(function(encounter){
