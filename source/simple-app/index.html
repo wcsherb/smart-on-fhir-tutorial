@@ -85,8 +85,8 @@
                     var dtDate = new Date(strDate);
                     var intDate = dtDate.getTime();
                     var intDOB = dtDOB.getTime();
-                    // var intYears = intMS / ( 1000*60*60*24*365 );
-                    var strYears = "<td>" + intDate.toString() + " " + intDOB + "</td>";
+                    var intYears = (intDate - intDOB) / ( 1000*60*60*24*365 );
+                    var strYears = "<td>" + intYears.toString() + "</td>";
                     $(this).children('td').last().after(strYears);
                 });
         }
