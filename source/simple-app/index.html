@@ -76,8 +76,8 @@
                     strRowCount = "<td>" + strRowCount + "</td>";
                     $(this).find('td').eq(0).before(strRowCount);
                     var strTdId = strTableName + "_date_" + strRowCount;
-                    $(this).children('td').eq(1).attr('id', strTdId);
-                    $("td#" + strTdId).attr('style', 'color: red');
+                    $(this).children('td').eq(1).attr('style', 'color: red');
+                    // $("td#" + strTdId).attr('style', 'color: red');
                 });
         }
       
