@@ -38,14 +38,6 @@
       
         function displayMedication (medCodings) {
             med_list.innerHTML += "<li> " + getMedicationName(medCodings) + "</li>";
-        } 
-      
-        function displayObsName (obsCoding) {
-            var obsCode = obsCoding.find(function(x){
-              return x.system == "http://loinc.org";
-            });
-          
-            return obsCode.display;
         }
       
         function displayObsResult (obs) {
@@ -62,24 +54,10 @@
           }
           return txtObsResult                                                                        
         }
-
-        function displayObsCategory (obsCategory) {
-            var obsCatCode = obsCategory.find(function(z){
-              return z.system == "http://hl7.org/fhir/observation-category";
-            });
-          
-            return obsCatCode.code
-        }
  
         function displayPatient (pt) {
             document.getElementById('name').innerHTML = getPatientName(pt);
             $("span#name").prepend("Patient Name: ");
-        }
-      
-        function displayEncType (encType) {
-          var arrayOfObjects = encType;
-          var txtEncType = arrayOfObjects[0].text;
-          return txtEncType
         }
       
         function sortTable( strTableId, intColNum ){
@@ -142,9 +120,9 @@
             });
             smart.patient.api.fetchAll({type: "Observation"}).then(function(results) {
                results.forEach(function(observation){
-                 obs_text = "<tr><td>" + displayObsCategory(observation.category.coding) + "</td>";
+                 obs_text = "<tr><td>" + JSON.stringify(observation.category.coding) + "</td>";
                  obs_text += "<td>" + observation.effectiveDateTime.substring(0,10) + "</td>";
-                 obs_text += "<td>" + displayObsName(observation.code.coding) + "</td>";
+                 obs_text += "<td>" + JSON.stringify(observation.code.coding) + "</td>";
                  obs_text += "<td>" + displayObsResult(observation) + "</td>";
                //  obs_text += "<td>" + observation.id + "</td>";
                  obs_text += "</tr>";
