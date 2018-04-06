@@ -80,12 +80,13 @@
                 // Add the age of the patient on each row
                     strDate = $(this).children('td').eq(1).text();
                     strDOB = $("span#dob").text();
+                    strDOB = strDOB.trim();
                     var dtDOB = new Date(strDOB);
                     var dtDate = new Date(strDate);
                     var intDate = dtDate.getTime();
                     var intDOB = dtDOB.getTime();
                     // var intYears = intMS / ( 1000*60*60*24*365 );
-                    var strYears = "<td>" + intDate.toString() + " " + strDOB + "</td>";
+                    var strYears = "<td>" + intDate.toString() + " " + intDOB + "</td>";
                     $(this).children('td').last().after(strYears);
                 });
         }
